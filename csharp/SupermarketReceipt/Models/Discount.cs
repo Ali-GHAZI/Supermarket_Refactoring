@@ -1,4 +1,4 @@
-namespace SupermarketReceipt
+namespace SupermarketReceipt.Models
 {
     public class Discount
     {

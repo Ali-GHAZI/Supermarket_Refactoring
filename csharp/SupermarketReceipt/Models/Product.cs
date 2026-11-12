@@ -1,17 +1,25 @@
+using System;
+using SupermarketReceipt.Enums;
 using System.Collections.Generic;
 
-namespace SupermarketReceipt
+namespace SupermarketReceipt.Models
 {
     public class Product
     {
-        public Product(string name, ProductUnit unit)
+        public Product(string name, ProductUnit unit, double price)
         {
             Name = name;
             Unit = unit;
+            Price = price;
         }
 
         public string Name { get; }
+
         public ProductUnit Unit { get; }
+
+        public double Price { get; }
+
+        public int quantity { get; }
 
         public override bool Equals(object obj)
         {
@@ -23,10 +31,7 @@ namespace SupermarketReceipt
 
         public override int GetHashCode()
         {
-            var hashCode = -1996304355;
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Name);
-            hashCode = hashCode * -1521134295 + Unit.GetHashCode();
-            return hashCode;
+            return HashCode.Combine(Name, Unit);
         }
     }
 
@@ -40,11 +45,5 @@ namespace SupermarketReceipt
 
         public Product Product { get; }
         public double Quantity { get; }
-    }
-
-    public enum ProductUnit
-    {
-        Kilo,
-        Each
     }
 }
